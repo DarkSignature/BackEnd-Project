@@ -17,7 +17,7 @@ session_start();
             border-radius: 20px;
             width: 220px;
             padding: 15px;
-            height: 300px;
+            height: 250px;
             background-color: rgba(88, 207, 250, 0.5);
             position: relative;
 
