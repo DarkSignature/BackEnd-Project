@@ -245,8 +245,8 @@ include("database/database.php");
 <?php
 if (isset($_POST["submit"])){
     $detail["id"] = $_POST["id"];
-    $detail["first_name"] = strstr($_POST["name"]), ' ', true);
-    $detail["last_name"] = strstr($_POST["name"]), ' ', false);
+    $detail["first_name"] = strstr($_POST["name"], ' ', true);
+    $detail["last_name"] = strstr($_POST["name"], ' ', false);
     $detail["email"] = $_POST["email"];
     $detail["bio"] = $_POST["bio"];
 
