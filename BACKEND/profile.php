@@ -1,10 +1,10 @@
 <?php
 session_start();
-// include("database/database.php");
-// if(isset($_POST["view"])){
-//     $id = $_POST["view"];
-//     $detail = viewData($id);
-// }
+include("database/database.php");
+if(isset($_POST["logout"])){
+    // echo "logout";
+    logout();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,11 +16,24 @@ session_start();
         body{
             background-color: rgb(32, 162, 227);
         }
+        
         nav{
             display: flex;
             background-color: blue;
             height: 50px;
             padding: 20px 30px;
+        }
+        .logoutButton{
+        display: flex;
+        position: relative;
+        bottom: 130px;
+        padding: 5px 15px;
+        text-decoration: none;
+        background-color: red;
+        color: white;
+        border: 1px solid red;
+        border-radius: 5px;
+        cursor: pointer;
         }
         .welcome-text{
             margin: 5px 10px 10px 5px;
@@ -44,7 +57,7 @@ session_start();
         .button2{
         display: flex;
         position: absolute;
-        left: 1050px;
+        left: 1000px;
         bottom: 90%;
         justify-content: right;
         padding: 5px 15px;
@@ -187,10 +200,15 @@ session_start();
                             echo $_SESSION["bio"];
                             ?></p>
                         </div>
+                        <div class="logout">
+                            <form action="profile.php" method="post">
+                                <input type="submit" name="logout" value="Logout" class="logoutButton"></input>
+                            </form>
+                        </div>
                         </div>
                     </div>
                 <div class="userPhoto">
-                    <!-- <img class="foto" src="img/<?php echo $detail["Photo"]; ?>" alt="Photo"> -->
+                    <!-- <img class="foto" src="img/" alt="Photo"> -->
                 </div>
         </div>
                 

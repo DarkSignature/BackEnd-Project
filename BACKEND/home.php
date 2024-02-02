@@ -5,6 +5,12 @@ include("database/database.php");
 if(isset($_POST["delete"])){
     deleteData($_POST["delete"]);
 }
+if(isset($_POST["search"])){
+
+}
+else{
+    $dataArray = getData();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +36,6 @@ if(isset($_POST["delete"])){
         border: 1px solid red;
         border-radius: 5px;
         cursor: pointer;
-        
         }
         nav{
             display: flex;
@@ -145,7 +150,7 @@ if(isset($_POST["delete"])){
         .button2{
         display: flex;
         position: absolute;
-        left: 1050px;
+        left: 1000px;
         bottom: 90%;
         justify-content: right;
         padding: 5px 15px;
@@ -155,6 +160,21 @@ if(isset($_POST["delete"])){
         border: 1px solid green;
         border-radius: 5px;
         cursor: pointer;
+        }
+        .searchInput{
+            background-color: gray;
+            width: 800px;
+            margin: 10px;
+        }
+        .searchInput::placeholder{
+            color: white;
+        }
+        .searchBut{
+            background-color: white;
+            margin: 18px;
+        }
+        .resetBut{
+            background-color: white;
         }
     </style>
     <script>
@@ -176,7 +196,11 @@ if(isset($_POST["delete"])){
         </nav>
         <div class="content-body">
             <div class="search-bar">
-                <p>search . . .</p>
+                <form action="home.php" method="post">
+                    <input type="text" name="dataSearch" class="searchInput" placeholder="Search name or email here..."></input>
+                    <input type="submit" name="search" value="Search" class="searchBut"></input>
+                    <input type="reset" name="reset" value="Reset" class="resetBut"></input>
+                </form>
             </div>
             <div class="attendList">
                 <p class="user-list"><b>User List</b></p>
@@ -191,7 +215,7 @@ if(isset($_POST["delete"])){
                     <?php
                     // include("database/database.php");
                     $no = 1;
-                    $dataArray = getData();
+                    // $dataArray = getData();
                     foreach ($dataArray as $row) {
                     if($row["role"] != "Admin"){
                     echo "<tr>";

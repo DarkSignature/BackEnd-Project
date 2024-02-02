@@ -113,4 +113,8 @@ function createData($newUser){
     closeConnection();
     header("Location: home.php");
 }
+function logout(){
+    session_destroy();
+    header("Location: index.php");
+}
 ?>
