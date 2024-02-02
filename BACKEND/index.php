@@ -26,7 +26,7 @@ session_start();
             z-index: 2;
         }
         .titlebox{
-            background-color: red;
+            background-color: lightcoral;
             width: 220px;
             height: 40px;
             border-radius: 20px;
@@ -36,15 +36,15 @@ session_start();
             margin-bottom: 10px;
         }
         .title{
-            font-family: 'Playfair Display', serif;
-            
-            margin: 0px 10px 10px 10px;
+            font-family: 'Catamaran', serif;
+            font-weight: bold;
+            margin: 5px 10px 10px 10px;
             text-align: center;
-            font-size: 25px;
+            font-size: 27px;
         }
         .form-control{
-            font-family: 'Playfair Display', serif;
-            font-size: 15px;
+            font-family: 'Catamaran', serif;
+            font-size: 18px;
             border-radius: 5px;
             border: 2px solid;
             margin: 15px 15px 15px 0px;
@@ -52,7 +52,8 @@ session_start();
             width: 205px
         }
         label{
-            font-family: 'Playfair Display', serif;
+            font-family: 'Catamaran', serif;
+            font-weight: bold;
             font-size: 15px;
         }
         body{
@@ -73,8 +74,10 @@ session_start();
         .button{
             width: 150px;
             height: 35px;
-            background-color: green;
+            background-color: darkgreen;
             /* border-color: green; */
+            font-family: 'Catamaran', serif;
+            font-size: 15px;
             color: white;
             border-radius: 10px;
             /* box-shadow:4px 4px 15px 10px rgba(251, 251, 251, 0.756); */
