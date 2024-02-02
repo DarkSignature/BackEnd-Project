@@ -167,9 +167,9 @@ else{
         justify-content: right;
         padding: 5px 15px;
         text-decoration: none;
-        background-color: green;
+        background-color: mediumorchid;
         color: white;
-        border: 1px solid green;
+        border: 1px solid white;
         border-radius: 5px;
         cursor: pointer;
         }
