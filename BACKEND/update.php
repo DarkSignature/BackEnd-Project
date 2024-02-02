@@ -225,8 +225,8 @@ else{
             // }
             echo $detail["first_name"] . "'s Information"; 
             ?>!</p>
-            <a href="index.php" class="button">Logout</a>
-            <a href="home.php" class="button2">Home</a>
+            <a href="profile.php" class="button">Profile</a>
+            <a href="home.php" class="button2">Dashboard</a>
         </nav>
         <div class="content">
            

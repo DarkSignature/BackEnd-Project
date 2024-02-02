@@ -1,57 +1,39 @@
 <?php
 session_start();
-$detail = [];
 include("database/database.php");
-if (isset($_POST["submit"])){
-    $detail["id"] = $_POST["id"];
-    $spacePosition = strpos($_POST["name"], ' ');
-
-    if($spacePosition !== false){
-    $detail["first_name"] = substr($_POST["name"], 0, $spacePosition);
-    $detail["last_name"] =  substr($_POST["name"], $spacePosition + 1);
-    }
-    else{
-        $detail["first_name"] = $_POST["name"];
-        $detail["last_name"] = '';
-    }
-    // $detail["first_name"] = strstr($_POST["name"], ' ', true);
-    // $detail["last_name"] = strstr($_POST["name"], ' ', false);
-    // $cutLastName = explode(' ', $detail["last_name"], 1);
-    // $detail["last_name"] = $cutLastName;
-    $detail["email"] = $_POST["email"];
-    $detail["bio"] = $_POST["bio"];
-    // $detail["Photo"] = $_POST["photo"];
-    if(empty($detail["id"]) ||empty($detail["first_name"]) ||empty($detail["email"])){
-        echo "Please fill any empty forms other than bio...";
-    }
-    else{
-        createData($detail);
-    }
-    // echo $detail["first_name"];
+if(isset($_POST["logout"])){
+    // echo "logout";
+    logout();
 }
-// else{
-//     if(isset($_POST["edit"])){
-//         $id = $_POST["edit"];
-//         $detail = viewData($id);
-        // echo $detail["email"] . " " . $detail["Photo"];
-    // }
-// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New User</title>
+    <title>User Information</title>
     <style>
         body{
             background-color: rgb(32, 162, 227);
         }
+        
         nav{
             display: flex;
             background-color: blue;
             height: 50px;
             padding: 20px 30px;
+        }
+        .logoutButton{
+        display: flex;
+        position: relative;
+        bottom: 130px;
+        padding: 5px 15px;
+        text-decoration: none;
+        background-color: red;
+        color: white;
+        border: 1px solid red;
+        border-radius: 5px;
+        cursor: pointer;
         }
         .welcome-text{
             margin: 5px 10px 10px 5px;
@@ -75,7 +57,7 @@ if (isset($_POST["submit"])){
         .button2{
         display: flex;
         position: absolute;
-        left: 1050px;
+        left: 1000px;
         bottom: 90%;
         justify-content: right;
         padding: 5px 15px;
@@ -114,7 +96,7 @@ if (isset($_POST["submit"])){
             /* align-items: center; */
             position: relative;
             top: 10px;
-            width: 25%;
+            width: 35%;
             height: 150px;
             margin: 10px;
             flex-direction: column;
@@ -136,48 +118,35 @@ if (isset($_POST["submit"])){
         }
         .dataID{
             position: relative;
-            bottom: 5px;
+            bottom: 15px;
         }
         .detailID{
             position: relative;
-            bottom: 5px;
-            width: 200px;
+            bottom: 45px;
         }
         .dataName{
             position: relative;
-            bottom: 0px;
+            bottom:65px;
         }
         .detailName{
             position: relative;
-            bottom: 0px;
-            width: 200px;
+            bottom: 80px;
         }
         .detailEmail{
             position: relative;
-            top: 5px;
-            width: 200px;
+            bottom: 115px;
         }
         .dataEmail{
             position: relative;
-            top: 5px;
+            bottom: 100px;
         }
         .dataBio{
             position: relative;
-            top: 10px;
+            bottom: 130px;
         }
         .detailBio{
             position: relative;
-            top: 10px;
-            width: 300px;
-            height: 100px;
-            box-sizing: border-box;
-            /* padding: 10px; */
-        }
-        .detailBio input{
-            width: 100%;
-            height: 100%;
-            box-sizing: border-box;
-            margin; 0;
+            bottom: 140px;
         }
         .email{
             
@@ -190,30 +159,16 @@ if (isset($_POST["submit"])){
             position: relative;
             left: 3px;
         }
-        .content{
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-        .add{
-            background-color: lightgreen;
-            height: 40px;
-            border-radius: 10px;
-            color: black;
-            font-weight: bold;
-        }
     </style>
-    <script>
-        function confirmUpdate(){
-            var confirmation = confirm("Are you sure you want to add a new user?");
-            return confirmation;
-        }
-    </script>
 </head>
 <body>
     <div class="container">
         <nav>
-            <p class="welcome-text">Add New User</p>
+            <p class="welcome-text">Showing 
+            <?php 
+            // echo $_POST["view"];
+            echo $_SESSION["first_name"] . "'s Profile"; 
+            ?>!</p>
             <a href="profile.php" class="button">Profile</a>
             <a href="home.php" class="button2">Dashboard</a>
         </nav>
@@ -222,21 +177,33 @@ if (isset($_POST["submit"])){
             <div class="detail-box"> 
                 <div class="dataWithPic">
                     <div class="userID">
-                        <form action="create.php" method="post" onsubmit="return confirmUpdate()" required>
-                        <label class="dataID" for="id"><b>User ID</b></label>
-                        <input type="text" name="id" class="detailID" placeholder="Your ID here..." required></input>
+                        <p class="dataID"><b>User ID</b></p>
+                        <p class="detailID"><?php 
+                        echo $_SESSION["id"];
+                        ?></p>
                         <div class="name">
-                            <label class="dataName" for="name"><b>Full Name</b></label>
-                            <input type="text" name="name" class="detailName" placeholder="Your full name here..." required></input>
+                            <p class="dataName"><b>Full Name</b></p>
+                            <p class="detailName"><?php
+                            echo $_SESSION["first_name"] . " " . $_SESSION["last_name"];
+                            ?></p>
                         </div>
                         <div class="email">
-                            <label class="dataEmail" for="email"><b>Email</b></label>
-                            <input type="email" name="email" class="detailEmail" placeholder="Your email here..." required></input>
+                            <p class="dataEmail"><b>Email</b></p>
+                            <p class="detailEmail"><?php 
+                            echo $_SESSION["email"];
+                            ?></p>
                         </div>
                         <div class="bio">
-                            <label class="dataBio" for="bio"><b>Bio:</b></label>
+                            <p class="dataBio"><b>Bio:</b></p>
                             <div class="bioText">
-                            <textarea rows="4" column="30" name="bio" class="detailBio" placeholder="Your bio here"></textarea>
+                            <p class="detailBio"><?php 
+                            echo $_SESSION["bio"];
+                            ?></p>
+                        </div>
+                        <div class="logout">
+                            <form action="profile.php" method="post">
+                                <input type="submit" name="logout" value="Logout" class="logoutButton"></input>
+                            </form>
                         </div>
                         </div>
                     </div>
@@ -247,28 +214,7 @@ if (isset($_POST["submit"])){
                 
                 
             </div>
-            <input type="submit" value="Add User" name="submit" class="add"></input>
-            </form>
         </div>
     </div>
 </body>
 </html>
-
-<?php
-// if (isset($_POST["submit"])){
-//     $detail["id"] = $_POST["id"];
-//     $detail["first_name"] = strstr($_POST["name"], ' ', true);
-//     $detail["last_name"] = strstr($_POST["name"], ' ', false);
-//     $detail["email"] = $_POST["email"];
-//     $detail["bio"] = $_POST["bio"];
-    // echo $detail["id"] . $detail["first_name"] . $detail["last_name"] . $detail["email"] . $detail["bio"];
-
-
-    // updateData($_POST);
-    // echo "success";
-// }
-// else{
-//     echo "error";
-// }
-
-?>
