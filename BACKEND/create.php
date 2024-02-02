@@ -45,17 +45,19 @@ if (isset($_POST["submit"])){
     <title>Add New User</title>
     <style>
         body{
-            background-color: rgb(32, 162, 227);
+            background-color: midnightblue;
         }
         nav{
             display: flex;
-            background-color: blue;
+            background-color: lightskyblue;
+            border-color: black;
+            border-radius: 20px;
             height: 50px;
             padding: 20px 30px;
         }
         .welcome-text{
             margin: 5px 10px 10px 5px;
-            color: white;
+            color: black;
             font-size: 40px;
         }
         .button {
@@ -66,9 +68,9 @@ if (isset($_POST["submit"])){
         justify-content: right;
         padding: 5px 15px;
         text-decoration: none;
-        background-color: red;
+        background-color: mediumslateblue;
         color: white;
-        border: 1px solid red;
+        border: 1px solid white;
         border-radius: 5px;
         cursor: pointer;
         }
@@ -80,9 +82,9 @@ if (isset($_POST["submit"])){
         justify-content: right;
         padding: 5px 15px;
         text-decoration: none;
-        background-color: green;
+        background-color: mediumorchid;
         color: white;
-        border: 1px solid green;
+        border: 1px solid white;
         border-radius: 5px;
         cursor: pointer;
         }
