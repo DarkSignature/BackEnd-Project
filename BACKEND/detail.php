@@ -11,7 +11,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>User Information</title>
     <style>
         body{
             background-color: rgb(32, 162, 227);
@@ -162,8 +162,8 @@ session_start();
             }
             echo $detail["first_name"] . "'s Information"; 
             ?>!</p>
-            <a href="index.php" class="button">Logout</a>
-            <a href="home.php" class="button2">Home</a>
+            <a href="profile.php" class="button">Profile</a>
+            <a href="home.php" class="button2">Dashboard</a>
         </nav>
         <div class="content">
            

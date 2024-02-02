@@ -15,7 +15,7 @@ if(isset($_POST["delete"])){
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
     <link rel="icon" type="image/jpg" href="img/bracer.jpg">
-    <title>Attendance List</title>
+    <title>Dashboard</title>
     <style>
         .button {
         display: flex;
@@ -142,6 +142,20 @@ if(isset($_POST["delete"])){
             color: black;
             font-weight: bold;
         }
+        .button2{
+        display: flex;
+        position: absolute;
+        left: 1050px;
+        bottom: 90%;
+        justify-content: right;
+        padding: 5px 15px;
+        text-decoration: none;
+        background-color: green;
+        color: white;
+        border: 1px solid green;
+        border-radius: 5px;
+        cursor: pointer;
+        }
     </style>
     <script>
         function confirmDelete(){
@@ -155,9 +169,10 @@ if(isset($_POST["delete"])){
         <nav>
             <p class="welcome-text">Welcome 
             <?php 
-            echo $_SESSION["username"]; 
+            echo $_SESSION["first_name"]; 
             ?>!</p>
-            <a href="index.php" class="button">Logout</a>
+            <a href="profile.php" class="button">Profile</a>
+            <a href="home.php" class="button2">Dashboard</a>
         </nav>
         <div class="content-body">
             <div class="search-bar">

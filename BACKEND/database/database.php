@@ -35,7 +35,11 @@ function login($input){
             setcookie("email", $input["email"], time() + (60 * 60 * 24), '/');
             echo "Finished!";
         }
-        $_SESSION["username"] = $user["first_name"];
+        $_SESSION["first_name"] = $user["first_name"];
+        $_SESSION["last_name"] = $user["last_name"];
+        $_SESSION["id"] = $user["id"];
+        $_SESSION["email"] = $user["email"];
+        $_SESSION["bio"] = $user["bio"];
         header("Location: home.php");
     }
     else{
