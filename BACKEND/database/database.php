@@ -26,7 +26,7 @@ function closeConnection(){
 
 function login($input){
     $conn = connectToDB(); 
-    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt = $conn->prepare("SELECT * FROM user WHERE email = ?");
     $stmt->execute([$input["email"]]);
     $user = $stmt->fetch();
     $md5input = md5($input["password"]);
@@ -54,7 +54,7 @@ function login($input){
 
 function getData(){
     $conn = connectToDB();
-    $stmt = $conn->prepare("SELECT * FROM users");
+    $stmt = $conn->prepare("SELECT * FROM user");
     $stmt->execute();
 
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -64,7 +64,7 @@ function getData(){
 
 function viewData($id){
     $conn = connectToDB();
-    $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
+    $stmt = $conn->prepare("SELECT * FROM user WHERE id = ?");
     $stmt->execute([$id]);
     $selectedUser = $stmt->fetch();
     // foreach($selectedUser as $data){
@@ -79,7 +79,7 @@ function viewData($id){
 
 function updateData($updatedData, $curID){
     $conn = connectToDB();
-    $stmt = $conn->prepare("UPDATE users SET id = ?, Photo = ?, first_name = ?, last_name = ?, email = ?, bio = ? WHERE id = ?");
+    $stmt = $conn->prepare("UPDATE user SET id = ?, Photo = ?, first_name = ?, last_name = ?, email = ?, bio = ? WHERE id = ?");
     $stmt->execute([
         $updatedData["id"],
         $updatedData["Photo"],
@@ -102,13 +102,13 @@ function updateData($updatedData, $curID){
 
 function deleteData($id){
     $conn = connectToDB();
-    $stmt = $conn->prepare("DELETE FROM users WHERE id = ?");
+    $stmt = $conn->prepare("DELETE FROM user WHERE id = ?");
     $stmt->execute([$id]);
     closeConnection();
 }
 function createData($newUser){
     $conn = connectToDB();
-    $stmt = $conn->prepare("INSERT INTO users (id, first_name, last_name, email, bio, `role`) VALUES (?, ?, ?, ?, ?, 'User')");
+    $stmt = $conn->prepare("INSERT INTO user (id, first_name, last_name, email, bio, `role`) VALUES (?, ?, ?, ?, ?, 'User')");
     $stmt->execute([$newUser["id"], $newUser["first_name"], $newUser["last_name"], $newUser["email"], $newUser["bio"]]);
     closeConnection();
     header("Location: home.php");
