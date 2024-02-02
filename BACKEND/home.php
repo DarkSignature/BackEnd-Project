@@ -31,25 +31,30 @@ else{
         justify-content: right;
         padding: 5px 15px;
         text-decoration: none;
-        background-color: red;
+        background-color: mediumslateblue;
         color: white;
-        border: 1px solid red;
+        border: 1px solid white;
         border-radius: 5px;
         cursor: pointer;
         }
         nav{
             display: flex;
-            background-color: blue;
+            background-color: lightskyblue;
+            border-color: black;
+            border-radius: 20px;
             height: 50px;
             padding: 20px 30px;
+            font-family: 'Catamaran', serif;
         }
         .welcome-text{
             margin: 5px 10px 10px 5px;
-            color: white;
+            color: black;
+            font-family: 'Catamaran', serif;
             font-size: 40px;
         }
         .search-bar{
-            background-color: gray;
+            background-color: white;
+            font-family: 'Catamaran', serif;
             display: flex;
             width: 80%;
             height: 20px;
@@ -80,7 +85,7 @@ else{
             border-radius: 20px;
         }
         body{
-            background-color: rgb(32, 162, 227);
+            background-color: midnightblue;
         }
         .user-list{
             margin-left: 10px;
@@ -88,7 +93,7 @@ else{
             font-size: 17px;
         }
         .th-top{
-            background-color: rgba(182, 255, 143, 0.3);
+            background-color: mediumaquamarine;
         }
         .user-table{
             overflow: auto;
@@ -96,6 +101,7 @@ else{
             justify-content: center;
             /* align-items: center; */
             border-style: solid;
+            font-family: 'Catamaran', serif;
         }
         .image{
             height: 70px;
@@ -103,22 +109,28 @@ else{
         }
         .id-cell{
             width: 50px;
+            font-family: 'Catamaran', serif;
         }
         .photo-cell{
             width: 120px;
+            font-family: 'Catamaran', serif;
         }
         .name-cell{
             width: 200px;
+            font-family: 'Catamaran', serif;
         }
         .email-cell{
             width: 200px;
+            font-family: 'Catamaran', serif;
         }
         .action-cell{
             width: 300px;
+            font-family: 'Catamaran', serif;
         }
         td{
             text-align: center;
             vertical-align: middle;
+            font-family: 'Catamaran', serif;
         }
         button{
             width: 80px;
@@ -126,22 +138,22 @@ else{
             margin: 5px;
         }
         .view{
-            background-color: yellow;
+            background-color: orange;
             border-style: outset;
-            border-color: yellow;
+            border-color: black;
         }
         .edit{
-            background-color: green;
+            background-color: olivedrab;
             border-style: outset;
-            border-color: green;
+            border-color: black;
         }
         .delete{
-            background-color: red;
+            background-color: indianred;
             border-style: outset;
-            border-color: red;
+            border-color: black;
         }
         .createButton{
-            background-color: lightgreen;
+            background-color: mediumaquamarine;
             height: 40px;
             border-radius: 10px;
             color: black;
