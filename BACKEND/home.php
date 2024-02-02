@@ -1,7 +1,10 @@
 <?php
 // echo "Hello, welcome to HOMEPAGE!<br>";
 session_start();
-
+include("database/database.php");
+if(isset($_POST["delete"])){
+    deleteData($_POST["delete"]);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -132,7 +135,20 @@ session_start();
             border-style: outset;
             border-color: red;
         }
+        .createButton{
+            background-color: lightgreen;
+            height: 40px;
+            border-radius: 10px;
+            color: black;
+            font-weight: bold;
+        }
     </style>
+    <script>
+        function confirmDelete(){
+            var confirmation = confirm("Are you sure you want to delete user?");
+            return confirmation;
+        }
+    </script>
 </head>
 <body>
     <div class="content-box">
@@ -158,7 +174,7 @@ session_start();
                         <th class="th-top">Action</th>
                     </tr>
                     <?php
-                    include("database/database.php");
+                    // include("database/database.php");
                     $no = 1;
                     $dataArray = getData();
                     foreach ($dataArray as $row) {
@@ -173,7 +189,7 @@ session_start();
                     . "<button type=\"submit\" class=\"view\" name=\"view\" value=\"" . $row["id"] . "\">" . "<input type=\"hidden\" name=\"id\" value=\"" . $row["id"] . "\">View</button></form>"
                     . "<form action=\"update.php\" method=\"post\">"
                     . "<button type=\"submit\" class=\"edit\" name=\"edit\" value=\"" . $row["id"] . "\">" . "<input type=\"hidden\" name=\"id\" value=\"" . $row["id"] . "\">Edit</button></form>"
-                    . "<form action=\"detail.php\" method=\"post\">"
+                    . "<form action=\"home.php\" method=\"post\" onsubmit=\"return confirmDelete()\">"
                     . "<button type=\"submit\" class=\"delete\" name=\"delete\" value=\"" . $row["id"] . "\">" . "<input type=\"hidden\" name=\"id\" value=\"" . $row["id"] . "\">Delete</button>" . "</form></td>";
                     echo "</tr>";
                     $no += 1;
@@ -182,14 +198,19 @@ session_start();
                     ?>
                 </table>
             </div>
+            <div class="create">
+                <form method="get" action="create.php">
+                    <input type=submit class="createButton" name="create" value="New User"></input>
+                </form>
+            </div>
         </div>
     </div>
 </body>
 </html>
 
 <?php
-// include("database/database.php");
-// if(isset($_POST["view"])){
+
+// if(isset($_GET["create"])){
 //     viewData($_POST["view"]);
 // }
 // if(isset($_POST["edit"])){

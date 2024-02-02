@@ -89,7 +89,7 @@ session_start();
             flex-direction: column;
         }
         .userPhoto{
-            background-color: red;
+            /* background-color: red; */
             display: flex;
             /* align-items: center; */
             position: relative;
