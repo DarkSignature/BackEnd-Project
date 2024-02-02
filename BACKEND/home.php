@@ -30,7 +30,6 @@ if(isset($_POST["delete"])){
         border: 1px solid white;
         border-radius: 5px;
         cursor: pointer;
-        font-family: 'Catamaran', serif;
         
         }
         nav{
