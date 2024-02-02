@@ -1,5 +1,6 @@
 <?php
 session_start(); 
+ob_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -130,4 +131,5 @@ include("database/database.php");
 if(isset($_POST['login'])){
     login($_POST);
 }
+ob_end_flush();
 ?>
