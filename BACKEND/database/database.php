@@ -63,7 +63,7 @@ function getData(){
 }
 function getSelectedData($data){
     $conn = connectToDB();
-    $stmt = $conn->prepare("SELECT * FROM users where first_name = ? OR email = ? OR last_name = ?");
+    $stmt = $conn->prepare("SELECT * FROM user where first_name = ? OR email = ? OR last_name = ?");
     $stmt->execute([$data["first_name"], $data["first_name"], $data["first_name"]]);
 
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
