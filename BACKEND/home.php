@@ -6,7 +6,25 @@ if(isset($_POST["delete"])){
     deleteData($_POST["delete"]);
 }
 if(isset($_POST["search"])){
+    if(!empty($_POST["dataSearch"])){
+        $data = [];
+        $spacePosition = strpos($_POST["dataSearch"], ' ');
 
+        if($spacePosition !== false){
+            $data["first_name"] = substr($_POST["dataSearch"], 0, $spacePosition);
+            $data["last_name"] =  substr($_POST["dataSearch"], $spacePosition + 1);
+        }
+        else{
+            $data["first_name"] = $_POST["dataSearch"];
+            $data["last_name"] = '';
+        }   
+        if($data["last_name"] == ''){
+            $dataArray = getSelectedData($data);
+        }
+        else{
+            $dataArray = getSelectedData2($data);
+        }
+    }
 }
 else{
     $dataArray = getData();
@@ -209,9 +227,12 @@ else{
         <div class="content-body">
             <div class="search-bar">
                 <form action="home.php" method="post">
-                    <input type="text" name="dataSearch" class="searchInput" placeholder="Search name or email here..."></input>
+                    <input type="text" name="dataSearch" class="searchInput" placeholder="Search name or email here..." required></input>
                     <input type="submit" name="search" value="Search" class="searchBut"></input>
-                    <input type="reset" name="reset" value="Reset" class="resetBut"></input>
+                    
+                </form>
+                <form action="home.php" method="post">
+                    <input type="submit" name="reset" value="Reset" class="resetBut"></input>
                 </form>
             </div>
             <div class="attendList">

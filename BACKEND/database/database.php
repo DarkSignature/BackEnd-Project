@@ -61,6 +61,24 @@ function getData(){
     closeConnection();
     return $result;
 }
+function getSelectedData($data){
+    $conn = connectToDB();
+    $stmt = $conn->prepare("SELECT * FROM users where first_name = ? OR email = ? OR last_name = ?");
+    $stmt->execute([$data["first_name"], $data["first_name"], $data["first_name"]]);
+
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    closeConnection();
+    return $result;
+}
+function getSelectedData2($data){
+    $conn = connectToDB();
+    $stmt = $conn->prepare("SELECT * FROM users where (first_name = ? AND last_name = ?)");
+    $stmt->execute([$data["first_name"], $data["last_name"]]);
+
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    closeConnection();
+    return $result;
+}
 
 function viewData($id){
     $conn = connectToDB();
@@ -76,6 +94,7 @@ function viewData($id){
     closeConnection();
     return $selectedUser;
 }
+
 
 function updateData($updatedData, $curID){
     $conn = connectToDB();
