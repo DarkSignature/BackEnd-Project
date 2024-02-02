@@ -1,11 +1,42 @@
 <?php
 session_start();
+$detail = [];
 include("database/database.php");
-// include("database/database.php");
-// if(isset($_POST["view"])){
-//     $id = $_POST["view"];
-//     $detail = viewData($id);
-// }
+if (isset($_POST["submit"])){
+    $curID = $_POST["curID"];
+    $detail["id"] = $_POST["id"];
+    $spacePosition = strpos($_POST["name"], ' ');
+
+    if($spacePosition !== false){
+    $detail["first_name"] = substr($_POST["name"], 0, $spacePosition);
+    $detail["last_name"] =  substr($_POST["name"], $spacePosition + 1);
+    }
+    else{
+        $detail["first_name"] = $_POST["name"];
+        $detail["last_name"] = '';
+    }
+    // $detail["first_name"] = strstr($_POST["name"], ' ', true);
+    // $detail["last_name"] = strstr($_POST["name"], ' ', false);
+    // $cutLastName = explode(' ', $detail["last_name"], 1);
+    // $detail["last_name"] = $cutLastName;
+    $detail["email"] = $_POST["email"];
+    $detail["bio"] = $_POST["bio"];
+    $detail["Photo"] = $_POST["photo"];
+    if(empty($detail["id"]) ||empty($detail["first_name"]) ||empty($detail["email"])){
+        echo "Please fill any empty forms other than bio...";
+    }
+    else{
+        updateData($detail, $curID);
+    }
+    // echo $detail["first_name"];
+}
+else{
+    if(isset($_POST["edit"])){
+        $id = $_POST["edit"];
+        $detail = viewData($id);
+        // echo $detail["email"] . " " . $detail["Photo"];
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,7 +121,7 @@ include("database/database.php");
             flex-direction: column;
         }
         .userPhoto{
-            background-color: red;
+            /* background-color: red; */
             display: flex;
             /* align-items: center; */
             position: relative;
@@ -186,12 +217,12 @@ include("database/database.php");
             <p class="welcome-text">Showing 
             <?php 
             // include("database/database.php");
-            $detail = [];
-            // echo $_POST["update"];
-            if(isset($_POST["edit"])){
-                $id = $_POST["edit"];
-                $detail = viewData($id);
-            }
+            // $detail = [];
+            // // echo $_POST["update"];
+            // if(isset($_POST["edit"])){
+            //     $id = $_POST["edit"];
+            //     $detail = viewData($id);
+            // }
             echo $detail["first_name"] . "'s Information"; 
             ?>!</p>
             <a href="index.php" class="button">Logout</a>
@@ -202,27 +233,27 @@ include("database/database.php");
             <div class="detail-box"> 
                 <div class="dataWithPic">
                     <div class="userID">
-                        <form action="update.php" method="post">
+                        <form action="update.php" method="post" onsubmit="return confirmUpdate()" required>
                         <label class="dataID" for="id"><b>User ID</b></label>
                         <input type="text" name="id" class="detailID" value="<?php 
                         echo $detail["id"];
-                        ?>"></input>
+                        ?>" required></input>
                         <div class="name">
                             <label class="dataName" for="name"><b>Full Name</b></label>
                             <input type="text" name="name" class="detailName" value="<?php
                             echo $detail["first_name"] . " " . $detail["last_name"];
-                            ?>"></input>
+                            ?>" required></input>
                         </div>
                         <div class="email">
                             <label class="dataEmail" for="email"><b>Email</b></label>
-                            <input type="email" name="email "class="detailEmail" value="<?php 
+                            <input type="email" name="email" class="detailEmail" value="<?php 
                             echo $detail["email"];
-                            ?>"></input>
+                            ?>" required></input>
                         </div>
                         <div class="bio">
                             <label class="dataBio" for="bio"><b>Bio:</b></label>
                             <div class="bioText">
-                            <textarea row="4" column="30" name="bio" class="detailBio"><?php 
+                            <textarea rows="4" column="30" name="bio" class="detailBio"><?php 
                             echo $detail["bio"];
                             ?></textarea>
                         </div>
@@ -230,6 +261,8 @@ include("database/database.php");
                     </div>
                 <div class="userPhoto">
                     <img class="foto" src="img/<?php echo $detail["Photo"]; ?>" alt="Photo">
+                    <input type="hidden" name="photo" value="<?php echo $detail["Photo"]; ?>"></input>
+                    <input type="hidden" name="curID" value="<?php echo $detail["id"]; ?>"></input>
                 </div>
         </div>
                 
@@ -243,16 +276,18 @@ include("database/database.php");
 </html>
 
 <?php
-if (isset($_POST["submit"])){
-    $detail["id"] = $_POST["id"];
-    $detail["first_name"] = strstr($_POST["name"], ' ', true);
-    $detail["last_name"] = strstr($_POST["name"], ' ', false);
-    $detail["email"] = $_POST["email"];
-    $detail["bio"] = $_POST["bio"];
+// if (isset($_POST["submit"])){
+//     $detail["id"] = $_POST["id"];
+//     $detail["first_name"] = strstr($_POST["name"], ' ', true);
+//     $detail["last_name"] = strstr($_POST["name"], ' ', false);
+//     $detail["email"] = $_POST["email"];
+//     $detail["bio"] = $_POST["bio"];
+    // echo $detail["id"] . $detail["first_name"] . $detail["last_name"] . $detail["email"] . $detail["bio"];
+
 
     // updateData($_POST);
     // echo "success";
-}
+// }
 // else{
 //     echo "error";
 // }
