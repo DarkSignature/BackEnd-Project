@@ -32,7 +32,8 @@ function login($input){
     $md5input = md5($input["password"]);
     if($md5input == $user["password"]){
         if(isset($input["checkbox"])){
-            setcookie("email", $input["email"], time() + (60 * 60 * 24), '/');
+            setcookie("email", $input["email"], time() + (60 * 60 * 3), '/');
+            setcookie("password", $input["password"], time() + (60 * 60 * 3), '/');
             // echo "Finished!";
         }
         $_SESSION["first_name"] = $user["first_name"];
@@ -133,6 +134,11 @@ function createData($newUser){
     header("Location: home.php");
 }
 function logout(){
+    if(isset($_COOKIE['email'])){
+        unset($_COOKIE);
+        setcookie('email', '', time() - 10800, '/');
+        setcookie('password', '', time() - 10800, '/');
+    }
     session_destroy();
     header("Location: index.php");
 }

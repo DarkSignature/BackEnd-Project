@@ -1,6 +1,14 @@
 <?php
 session_start(); 
 ob_start();
+include("database/database.php");
+
+if(isset($_COOKIE['email'])){
+    $input = [];
+    $input['email'] = $_COOKIE['email'];
+    $input['password'] = $_COOKIE['password'];
+    login($input);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -104,7 +112,9 @@ ob_start();
             </div>
             <form action="index.php" method="post">
                 <div class = "loginForm">
-                    <label for="email"><b>Email Address</b></label>
+                    <label for="email">
+                        Email Address
+                    </label>
                     <input type="email" class="form-control" id="email" placeholder="Enter your email address..." name="email" required>
                 
                 </div>
@@ -126,7 +136,6 @@ ob_start();
 </body>
 </html>
 <?php
-include("database/database.php");
 
 if(isset($_POST['login'])){
     login($_POST);
