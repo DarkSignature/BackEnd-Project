@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 01, 2024 at 03:05 PM
+-- Generation Time: Feb 20, 2024 at 03:53 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE `users` (
   `id` varchar(10) NOT NULL,
   `Photo` varchar(255) NOT NULL,
   `first_name` varchar(50) NOT NULL,
@@ -39,13 +39,13 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `user` (`id`, `Photo`, `first_name`, `last_name`, `email`, `password`, `bio`, `role`) VALUES
+INSERT INTO `users` (`id`, `Photo`, `first_name`, `last_name`, `email`, `password`, `bio`, `role`) VALUES
 ('UD01', '-', 'Admin', 'Admin', 'Admin@gmail.com', '0192023a7bbd73250516f069df18b500', 'This is admin', 'Admin'),
-('U002', 'udin_baharudin.png', 'Udin', 'Baharudin', 'udin.baharudin@binus.ac.id', '3af4c9341e31bce1f4262a326285170d', 'Eyo, what\'s up bro', 'User'),
-('U003', 'udin_petot.png', 'Udin', 'Petot', 'udinpetot123@gmail.com', '626d47988937e7ce40b788f72994a1da', '', 'User');
+('U003', 'udin_petot.png', 'Udin', 'Petot', 'udinpetot123@gmail.com', '626d47988937e7ce40b788f72994a1da', 'halo', 'User'),
+('U002', 'udin_baharudin.png', 'Udin', 'Baharudin', 'udin.baharudin@binus.ac.id', '3af4c9341e31bce1f4262a326285170d', 'Eyo, what\'s up bro', 'User');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
