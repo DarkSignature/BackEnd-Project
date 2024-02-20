@@ -30,6 +30,7 @@ function login($input){
     $stmt->execute([$input["email"]]);
     $user = $stmt->fetch();
     $md5input = md5($input["password"]);
+    if($user["role"] == "Admin"){
     if($md5input == $user["password"]){
         if(isset($input["checkbox"])){
             setcookie("email", $input["email"], time() + (60 * 60 * 3), '/');
@@ -49,6 +50,10 @@ function login($input){
         // $hash = md5("admin123");
         // echo $hash . "<br>";
         echo "Couldn't login";
+    }
+    }
+    else{
+        echo "Only admins can login here!";
     }
     closeConnection();
 }
